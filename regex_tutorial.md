@@ -274,7 +274,24 @@ The most common types:
 ```
 
 ### Character Escapes
+Escape characters are used to represent special characters (often denoted with a backslash "\").
 
+**Example:**
+```
+\s -- matches whitespace, tabs, line breaks
+
+    Valid matches:
+        - " "
+        - Hello There - (space inbetween Hello & There)
+
+\. -- matches period (.) character
+     
+     Valid matches:
+        - google.com
+        - erik@gmail.com
+        - .
+
+```
 ## Author
 
 Erik Chiodo is a current student enrolled in Columbia's Full-Stack Development course. If you're interested in this projects or other projects Erik has been working on, visit his github page here [Github Profile](https://github.com/erikchiodo)
