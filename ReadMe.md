@@ -11,7 +11,6 @@ I also tie each regex component back to a more complex example of a regular expr
 
 - [Story](#story)
 - [AC](#ac)
-- [Usage](#usage)
 - [License](#license)
 - [Contributing](#contributing)
 - [Questions](#questions)
