@@ -48,4 +48,6 @@ No contributors (aside from author)
 
 Link to [Regex Tutorial Assignment](https://github.com/erikchiodo/eriks-regex-tutorial)
 
+Link to [Github Gist](https://gist.github.com/erikchiodo/ab62ef8314414a6aaea1f47bd8e61045#file-gistfile1-txt)
+
 If you need to contact me directly, here's my email: erikchiodo@gmail.com!
