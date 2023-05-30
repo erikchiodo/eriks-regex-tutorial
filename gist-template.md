@@ -1,6 +1,6 @@
 # Eriks-Regex-Tutorial
 
-Welcome to my Regex Tutorial!  Below, I explain the fundamentals of regular expressions by summarizing what a regular expression is by defining search patterns, literal, and meta characters. Following a high-level conceptual summary, I provide a breakdown of a specific search pattern (email) by desecribing each of the components that make up a common regular expression.
+Welcome to my Regex Tutorial! Below, I will explain the fundamentals of regular expressions by defining search patterns, literal characters, and meta characters. After a high-level conceptual summary, I will provide a breakdown of a specific search pattern (email) by describing each component that comprises a typical regular expression.
 
 ## Table of Contents
 
@@ -16,15 +16,15 @@ Welcome to my Regex Tutorial!  Below, I explain the fundamentals of regular expr
 
 ## Introduction to Regular Expressions
 
-Before going through an example of a regular expression, it's important to understand what a regular expression is.
+Before delving into an example of a regular expression, it is important to grasp the concept of what a regular expression actually is.
 
-A regular expression (regex) is a string of characters that allows you to find specific snippets of information from a body of text. To simplify the definition, when creating a regular expression we are defining a **search pattern**. Think of a search pattern as the Find and Replace functionality on your computer. When you type in a string of characters you'd like to search you are implementing a form of a regular expression.
+A regular expression (regex) is a sequence of characters that enables you to locate specific fragments of information within a body of text. To simplify this definition, when we create a regular expression, we are essentially defining a **search pattern**. Think of a search pattern as a similar functionality to the "Find and Replace" feature on your computer. When you input a string of characters that you want to search for, you are essentially utilizing a form of regular expression.
 
-For example, if you wanted to search for the string "Columbia" in the below text, you would navigate to find & replace, type in the string, and see all instances of that string highlighted.
+For instance, suppose you wanted to search for the string "Columbia" in the text below. In such a case, you would navigate to the "Find & Replace" option, enter the desired string, and observe all instances of that string being highlighted.
 
 ![Screen Shot 2023-05-28 at 11 27 06 AM](https://github.com/erikchiodo/eriks-regex-tutorial/assets/122952630/48d06306-5893-4c42-8117-eef059f05952)
 
-The above example higlights the most basic form of a regular expression -- one that only searches by **literal characters**. In regex, literal characters are the ordinary characters that match themselves exactly as they appear. They are the non-special characters that represent themselves without any special meaning or interpretation. So if we wanted to write a regular expression for searching "Columbia" in the above example the following would be the sequential steps:
+The above example higlights the most basic form of a regular expression -- one that only searches by **literal characters**. In regex, literal characters are ordinary characters that match themselves exactly as they appear. They are non-special characters that carry no special meaning or interpretation. Therefore, if we were to construct a regular expression to search for "Columbia" in the aforementioned example, the following sequential steps would be followed:
 
 ```
     1. Search for "C" (case sensitive)
@@ -39,7 +39,7 @@ The above example higlights the most basic form of a regular expression -- one t
 
 You might be asking at this point: What's the use of search patterns -- especially considering that they only seem to search for highly-specific combinations of characters?
 
-Luckily, there's another concept in regex called **meta characters**. Meta characters allow you to create regular expressions that have pre-defined meaning with specific functions within search patterns. They allow you to create more impactful expressions because they give you the flexibility to add more depth to what you're searching for within a body of text.
+Fortunately, there's another concept in regex called **meta characters**. Meta characters allow you to create regular expressions with predefined meanings and specific functions within search patterns. They provide the ability to construct more impactful expressions by adding depth to your search criteria within a body of text.
 
 For example, if we wanted to search for a word that starts with "C" and is followed by 7 lowercase letters (i.e. Columbia), how might we write a regular expression using meta characters?
 
@@ -51,7 +51,7 @@ C[a-z]{7}
 
 - `C`: This is the letter "C", which is a literal character.
 - `[a-z]`: This is a bracket expression. It allows the values to be any lowercase letter between "a" and "z".
-- `{7}`: This is a quantifier that defines the character limit on the
+- `{7}`: This is a quantifier that defines the number of characters following "C", which is 7
 
 Taking all these components together, we get a more complex regular expression that defines a search pattern for a string that starts with "C" and is followed by 7 lowercase letters.
 
@@ -74,22 +74,24 @@ Anchor tags specify where within a string to apply the search pattern.
 
 To provide an example of each in practice using literal characters, let's say we have the following string and search patterns:
 
- > Example: **"Columbia makes coding fun"**
+ **Example:** 
+ 
+ **"Columbia makes coding fun"**
 
 ```
 1. /^Columbia/
 2. /Columbia$/
 ```
 
-For the above example, which regex would find Columbia (#1 or #2)?
+In the example provided, which regex would find "Columbia" (#1 or #2)?
 
-The correct answer is #1 because this search pattern looks for "Columbia" at the beginning of the string. If we wanted to create a string that would work with #2, we could change it to "Who makes coding fun? Columbia" because Columbia is at the end of the string.
+The correct answer is #1, as this search pattern specifically looks for the occurrence of "Columbia" at the beginning of the string. To make the string match pattern #2, we could modify it to "Who makes coding fun? Columbia" because "Columbia" appears at the end of the string.
 
-However, in the regex example for email validation we have the following nomenclature: `/^...$/` where the search pattern is in between the tags. What does this mean?
+However, in the regex example for email validation, we use the following nomenclature: `/^...$/`, where the search pattern is enclosed between the beginning ^ and ending $ anchor tags. What does this signify?
 
-When you have beginning `(^)` and ending `($)` anchor tags this enforces a strict search pattern, which means that the string has to exactly match the search pattern.  So if we had '/^Columbia$/', this would fail for the above example because those anchor tags strictly look for the string "Columbia".
+When you use the beginning `^` and ending `$` anchor tags, it enforces a strict search pattern, requiring an exact match between the string and the search pattern. For example, if we had '/^Columbia$/', it would not match the above example because those anchor tags strictly search for the string "Columbia" without any additional characters.
 
-So for our email example, that regular expression is strictly enforced to ensure there are no additional characters before or after where that search pattern applies.
+Therefore, in our email example, the regular expression is strictly enforced to ensure that there are no additional characters before or after the specified search pattern.
 
 ### Quantifiers
 ![Screen Shot 2023-05-29 at 11 38 29 AM](https://github.com/erikchiodo/eriks-regex-tutorial/assets/122952630/4d533f3f-0c55-4c9f-91f9-4cec95f7e463)
@@ -109,8 +111,33 @@ Below are some examples of common quantifiers you'll see:
 
 ```
 
-By nature, quantifiers are **greedy** meaning it will match for as many instances of the pattern there are, so you can add the `?` quantifier to make it lazy (will match as few occurrences of the pattern are possible).
+By nature, quantifiers are **greedy** meaning it will match for as many instances of the pattern there are. To limit the number of occurrences you can add `?` quantifier, which will make the expression **lazy**.
 
+**Examples:**
+```
+[A-Z]{5} -- will match with 5 digit strings with only uppercase letters
+
+    Valid matches:
+        - ABCDE
+        - ZYWVE
+        - TEMPE
+```
+```
+[0-9]{2,5} -- will match with strings inbetween 2 & 5 (inclusive) that consist of only numerics
+
+    Valid matches:
+        - 21
+        - 1234
+        - 132
+```
+```
+/beep/+ - will match where string has one or more consecutive beeps
+    Valid matches:
+        - beepbeep
+        - beepbeep
+        - honkbeep honkbeepbeep
+
+```
 In our email example, we have `{2,6}` as our quantifier, which means that it will match the pattern for string length 2 to 6 (inclusive).
 
 Why might we have this quantifier on this section of the expression?
@@ -123,9 +150,20 @@ If you look at many email addresses, many end with .com, .edu, .io, etc. So, in 
 
 Grouping Constructs allow us to apply groupings of search patterns to strings. As we look to build more complex regular expressions, these will come more in handy to help add more specificity to our search patterns. 
 
-If you look at the image above and with an understanding of how email addresses are structured does the grouping constructs make more sense.
+**Example:**
+```
+^(\d{3})-(\d{2})-(\d{4})$ -- SSN validation
 
-If not let me show you how sample emails would match up against the image.
+    Valid matches:
+        - 000-00-0000
+        - 123-45-6789
+        - 321-123-9876
+```
+This is an example of a regex for Social Security Number. Typically you'll want to group by sections that have distinctive patterns. In the case of social security number it's represented by 3 sections where 1st section is 3 numeric digits, 2nd section is 2 numeric digits, and 3rd section is 4 numeric digits (separated by hyphens).
+
+After seeing the SSN example, you might see how you could apply the same concept to an email regex.
+
+If not let me show you how sample emails would match up against the expression.
 
 ![Screen Shot 2023-05-29 at 11 59 37 AM](https://github.com/erikchiodo/eriks-regex-tutorial/assets/122952630/11bc5bf8-7781-49ff-a97e-b138a72bc6ff)
 
@@ -148,20 +186,20 @@ Note that "-" can be included as a special character, but is also used to set ra
 
 With a basic understanding of bracket expressions, we can explain each of the bracket expression in our email example:
 
+```
+    [a-z0-9_.-]
+        - Letters: a-z (lowercase only) 
+        - Numbers: 0-9
+        - Special Characters: Underscore, Period, or Hypen
 
-- `[a-z0-9_.-]`
-    - Letters: a-z (lowercase only) 
-    - Numbers: 0-9
-    - Special Characters: Underscore, Period, or Hypen
+    [\da-z.-]
+        - Letters: a-z (lowercase only)
+        - Special Characters: Period or Hypen
 
-- `[\da-z.-]`
-    - Letters: a-z (lowercase only)
-    - Special Characters: Period or Hypen
-
-- `[a-z.]` 
-    - Letters: a-z (lowercase only)
-    - Special Characters: Period
-
+    [a-z.]
+        - Letters: a-z (lowercase only)
+        - Special Characters: Period
+```
 ### Character Classes
 
 Character classes correspond to a single character from a group of characters. We've already reviewed a form of character classes -- Bracket Notation, which created a pattern for matching lowercase, numbers, and special characters. 
@@ -172,6 +210,23 @@ Below are some other Character Classes we've haven't discussed yet:
     - Matches any character not include in the bracket. We already learned that bracket expressions are known as positive character groups, which means that they are inclusive of characters defined within the brackets. However, by using the above notation, you can create expressions that are not inclusive of elements included within the brackets.
 - `/d`
     - Very similar to [0-9], this notation will allow you to search for any character that is a digit (which includes decimal values) whereas [0-9] will match a single digit character (whole number).
+
+**Example:**
+```
+\d{4}
+
+    Valid matches:
+        - 1234
+        - 4321
+        - 0000
+
+[[^0-9]]
+
+    Valid matches:
+        - abc
+        - EDU
+        - Hello!
+```
 
 Aside from bracket notation, we also have an instance of a character class within one of our bracket expressions, which I've highlighted below: 
 
@@ -187,12 +242,10 @@ Similar to conditional logic within programming OR Operators give us a way to as
 
     Valid matches:
         - ABC
-        -1A3
+        - 1A3
         - HELLO42
         - 1
 ```
-
-
 Essentially any Uppercase Letter (A-Z), Number (btwn 0-9), or any combination would be acceptable. 
 
 ### Flags
@@ -203,24 +256,24 @@ The most common types:
 - `i`
     - This stands for case-insensitive. It allows you to pass through a combination of upper and lowercase letters for a string and match regardless of letter case.
 
-**Example:**
-```
-   /hello/i
-
-    Valid matches:
-        - hello
-        - HEllo
-        - HellO
-```
 - `g`
     - This standards for global. It will search for all instances of the string (not just the first instance).
 
 **Example:**
 ```
-    /ho/g:
-      ho ho ho Merry Christmas
+/hello/i
 
+    Valid matches:
+        - hello
+        - HEllo
+        - HellO
+
+/ho/g:
+    Valid matches:
+      - ho ho ho Merry Christmas
 ```
+
+### Character Escapes
 
 ## Author
 
